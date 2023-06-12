@@ -27,8 +27,18 @@ public class UserController {
         return repository.findAll();
     }
 
-//    @PutMapping("/user/{id}")
-//    User update(@RequestBody User user, @PathVariable Long id) {
-//        return repository.save(user);
-//    }
+    @PutMapping("/user/{id}")
+    User update(@RequestBody User user, @PathVariable Long id) {
+        return repository.save(user);
+    }
+
+    @DeleteMapping("/user/{id}")
+    void delete(@PathVariable Long id) {
+        repository.deleteById(id);
+    }
+
+    @GetMapping("user/{name}")
+    List<User> findByName(@PathVariable String name) {
+        return repository.findByNameContaining(name);
+    }
 }
